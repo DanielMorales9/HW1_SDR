@@ -1,4 +1,4 @@
-package signal;
+package radio.signal;
 
 import java.util.Random;
 

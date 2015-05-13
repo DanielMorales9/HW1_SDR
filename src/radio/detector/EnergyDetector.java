@@ -1,10 +1,10 @@
-package detector;
+package radio.detector;
 
-import probability.Probability;
-import signal.Complex;
-import signal.Noise;
-import signal.Signal;
-import signalprocessing.SignalProcessor;
+import radio.signal.Complex;
+import radio.signal.Noise;
+import radio.signal.Signal;
+import radio.signalprocessing.SignalProcessor;
+import util.probability.Probability;
 
 public class EnergyDetector {
 	private Double[] noiseEnergies;

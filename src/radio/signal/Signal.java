@@ -1,8 +1,8 @@
-package signal;
+package radio.signal;
 
 import java.util.List;
 
-import signalprocessing.SignalProcessor;
+import radio.signalprocessing.SignalProcessor;
 
 
 public class Signal {

@@ -1,8 +1,8 @@
-package signalprocessing;
+package radio.signalprocessing;
 
 import exception.InvalidSignalsException;
-import signal.Complex;
-import signal.Signal;
+import radio.signal.Complex;
+import radio.signal.Signal;
 
 public class SignalProcessor {
 

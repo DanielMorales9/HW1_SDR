@@ -1,8 +1,8 @@
 package radio;
 
-import signal.Signal;
-import detector.EnergyDetector;
-import fetcher.Fetcher;
+import radio.detector.EnergyDetector;
+import radio.signal.Signal;
+import service.fetcher.Fetcher;
 
 public class Radio {
 	private static final Double CUSTOM_FALSE_ALLARME_PROBABILITY = Math.pow(10, -4);

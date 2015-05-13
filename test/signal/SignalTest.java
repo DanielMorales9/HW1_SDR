@@ -5,6 +5,9 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import radio.signal.Complex;
+import radio.signal.Signal;
+
 public class SignalTest {
 	private Signal signal;
 	@Before

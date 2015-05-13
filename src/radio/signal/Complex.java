@@ -1,4 +1,4 @@
-package signal;
+package radio.signal;
 
 
 public class Complex {

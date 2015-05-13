@@ -1,9 +1,9 @@
 package simulator;
 
 import exception.InvalidSignalsException;
-import signal.Noise;
-import signal.Signal;
-import signalprocessing.SignalProcessor;
+import radio.signal.Noise;
+import radio.signal.Signal;
+import radio.signalprocessing.SignalProcessor;
 
 public class Simulator {
 

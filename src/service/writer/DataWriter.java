@@ -1,12 +1,12 @@
-package writer;
+package service.writer;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import signal.Complex;
-import signal.Signal;
+import radio.signal.Complex;
+import radio.signal.Signal;
 
 public class DataWriter {
 	

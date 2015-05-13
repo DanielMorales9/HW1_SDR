@@ -6,7 +6,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import signal.Complex;
+import radio.signal.Complex;
+import service.fetcher.Fetcher;
 
 public class FetcherTest {
 	

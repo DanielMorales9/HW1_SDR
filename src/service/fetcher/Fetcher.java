@@ -1,4 +1,4 @@
-package fetcher;
+package service.fetcher;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import signal.Complex;
+import radio.signal.Complex;
 
 public class Fetcher {
 

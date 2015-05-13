@@ -4,8 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import signal.Complex;
-import signal.Signal;
+import radio.signal.Complex;
+import radio.signal.Signal;
+import radio.signalprocessing.SignalProcessor;
 
 public class SignalProcessorTest {
 

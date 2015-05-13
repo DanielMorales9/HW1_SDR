@@ -6,9 +6,10 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import fetcher.Fetcher;
-import signal.Complex;
-import signal.Signal;
+import radio.signal.Complex;
+import radio.signal.Signal;
+import service.fetcher.Fetcher;
+import service.writer.DataWriter;
 
 public class DataWriterTest {
 	private DataWriter writer;
