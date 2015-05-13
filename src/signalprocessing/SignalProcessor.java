@@ -53,9 +53,11 @@ public class SignalProcessor {
 		return result;
 	}
 	
-	public static void main(String[] args) {
-		Signal s = new Signal(4);
-		System.out.println(SignalProcessor.power(s));
+	public static double getSNRFromPower(double signalPower) {
+		double noisePower = signalPower -1;
+		double snrDB = 10*Math.log10(1/noisePower);
+		return snrDB;
 	}
+	
 
 }

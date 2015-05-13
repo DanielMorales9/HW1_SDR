@@ -1,5 +1,9 @@
 package signal;
 
+import java.util.List;
+
+import signalprocessing.SignalProcessor;
+
 
 public class Signal {
 
@@ -52,6 +56,15 @@ public class Signal {
 		for (Complex sample : samples) {
 			sample.complexCon();
 		}
+	}
+
+	public void setSamples(List<Complex> samples) {
+		this.samples = samples.toArray(new Complex[samples.size()]);
+	}
+
+	public double getSNR() {
+		double signalPower = SignalProcessor.power(this);
+		return SignalProcessor.getSNRFromPower(signalPower);
 	}
 
 
