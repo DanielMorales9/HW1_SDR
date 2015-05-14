@@ -56,7 +56,13 @@ public class SignalProcessor {
 	
 	public static double calculateSNRFromPower(double signalPower) {
 		double noisePower = signalPower -1;
-		double snrDB = 10*Math.log10(1/noisePower);
+		double snrDB;
+		if (noisePower <0) {
+			snrDB = 10*Math.log10(1/signalPower);
+		}
+		else {
+			snrDB = 10*Math.log10(1/noisePower);
+		}
 		return snrDB;
 	}
 
