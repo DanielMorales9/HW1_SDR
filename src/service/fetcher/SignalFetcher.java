@@ -8,6 +8,11 @@ import java.util.Scanner;
 
 import radio.signal.Complex;
 
+/**
+ * Lettore di Segnali da file.
+ * @author Daniel
+ *
+ */
 public class SignalFetcher {
 
 	private int countReal;
@@ -24,6 +29,9 @@ public class SignalFetcher {
 		this.samples = new ArrayList<>();
 	}
 
+	/**
+	 * Semplice metodo che legge segnali da file
+	 */
 	public void fetch() {
 		BufferedReader reader = null;
 

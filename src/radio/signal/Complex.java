@@ -2,6 +2,7 @@ package radio.signal;
 
 /**
  * Classe che modella i numeri Complessi e le operazioni fondamentali
+ * @author Antonio Matinata
  */
 
 public class Complex {
@@ -38,16 +39,16 @@ public class Complex {
 	/** OPERAZIONI **/
 	
 	/**
-	 * Controlla se il numero complesso è costituito da sola parte reale
-	 * @return true se la parte immaginaria è nulla
+	 * Controlla se il numero complesso ï¿½ costituito da sola parte reale
+	 * @return true se la parte immaginaria ï¿½ nulla
 	 *  */
 	public boolean isReale(){
 		return this.pReal==0.0;
 	}
 	
 	/**
-	 * Controlla se il numero complesso è costituito da sola parte immaginaria
-	 * @return true se la parte reale è nulla
+	 * Controlla se il numero complesso ï¿½ costituito da sola parte immaginaria
+	 * @return true se la parte reale ï¿½ nulla
 	 */
 	public boolean isImmaginario(){
 		return this.pImg==0.0;
@@ -64,7 +65,7 @@ public class Complex {
 
 	/** 
 	 * Metodo che permette di calcolare la somma tra due numeri complessi c1,c2
-	 * La somma di due numeri complessi è pari ad un numero complesso c che ha
+	 * La somma di due numeri complessi ï¿½ pari ad un numero complesso c che ha
 	 * per parte reale la somma delle parti reali di c1 e c2
 	 * e per parte immaginaria la somma delle parti immaginarie di c1 e c2
 	 * @param Complex c1, Complex c2
@@ -78,7 +79,7 @@ public class Complex {
 
 	/** 
 	 * Metodo che permette di calcolare la differenza tra due numeri complessi c1,c2
-	 * La differenza di due numeri complessi è pari ad un numero complesso c che ha
+	 * La differenza di due numeri complessi ï¿½ pari ad un numero complesso c che ha
 	 * per parte reale la differenza delle parti reali di c1 e c2
 	 * e per parte immaginaria la differenza delle parti immaginarie di c1 e c2
 	 * @param Complex c1, Complex c2
@@ -92,7 +93,7 @@ public class Complex {
 
 	/**
 	 * Restituisce il prodotto di due numeri complessi c1 e c2.
-	 * ovvero il prodotto è pari a un nuovo complesso con parte reale pari alla somma dei prodotti fra parti immaginarie e reali dei due complessi
+	 * ovvero il prodotto ï¿½ pari a un nuovo complesso con parte reale pari alla somma dei prodotti fra parti immaginarie e reali dei due complessi
 	 * e parte immaginaria pari alla somma dei prodotti incrociati fra parte immaginaria e reale dei due numeri
 	 * @param Complex c1, Complex c2
 	 * @return Complex c1 * c2
@@ -104,7 +105,7 @@ public class Complex {
 	}
 
 	/**
-	 * Restituisce il prodotto di un numero complesso e uno scalare scal. Il prodotto con uno scalare è pari a 
+	 * Restituisce il prodotto di un numero complesso e uno scalare scal. Il prodotto con uno scalare ï¿½ pari a 
 	 * un nuovo complesso che ha parte reale e parte immaginaria moltiplicate entrambe per quello scalare
 	 * @param Complex c1, double scalare
 	 * @return Complex prodotto C1*Scalare
@@ -115,7 +116,7 @@ public class Complex {
 
 	/**
 	 * Restituisce il rapporto di due numeri complessi c1 e c2.
-	 * il rapporto è uguale a un nuovo complesso che ha al numeratore il prodotto dei complessi 
+	 * il rapporto ï¿½ uguale a un nuovo complesso che ha al numeratore il prodotto dei complessi 
 	 * e al denominatore la somma dei quadrati di parte reale e immaginaria del complesso al denominatore
 	 * @param Complex c1, Complex c2
 	 * @return Complex c1/c2
@@ -141,7 +142,7 @@ public class Complex {
 
 	/**
 	 * Metodo che permette di ottenere il reciproco di un numero complesso.
-	 * Il reciproco è pari ha al numeratore parte reale e parte immaginaria cambiata di segno,
+	 * Il reciproco ï¿½ pari ha al numeratore parte reale e parte immaginaria cambiata di segno,
 	 * al denominatore la somma dei quadrati di parte immaginaria e reale.
 	 */
 	public void reciprocal() {
