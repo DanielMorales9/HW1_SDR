@@ -1,4 +1,4 @@
-package writer;
+package service.writer;
 
 
 import static org.junit.Assert.assertEquals;

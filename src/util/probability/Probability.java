@@ -16,7 +16,7 @@ public class Probability {
 		return  average;
 	}
 
-	public static double variance(Double[] realizations) {
+	public static double simpleVariance(Double[] realizations) {
 		double average = Probability.simpleAverage(realizations);
 		double average2 = Math.pow(average, 2);
 		double vqm = Probability.vqm(realizations);

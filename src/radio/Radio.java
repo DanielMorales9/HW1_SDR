@@ -29,6 +29,7 @@ public class Radio {
 	public double compareWithThreshold(int numberOfTest) {
 		double numberOfDetections = 
 				this.detector.compareSignalWithThreshold(signalRead, numberOfTest);
-		return numberOfDetections;
+		double detectionPercent = numberOfDetections/numberOfTest*100;
+		return detectionPercent;
 	}	
 }

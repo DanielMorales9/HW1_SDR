@@ -1,5 +1,6 @@
 package radio.detector;
 
+import radio.signal.AbstractSignal;
 import radio.signal.Complex;
 import radio.signal.Noise;
 import radio.signal.Signal;
@@ -20,20 +21,12 @@ public class EnergyDetector {
 
 	public void determineThereshold(Double falseAllarmeProbability) throws Exception {
 		this.threshold = Probability.simpleAverage(noiseEnergies);
-		double variance = Probability.variance(noiseEnergies);
+		double variance = Probability.simpleVariance(noiseEnergies);
 		threshold += Math.sqrt(2*variance) * Probability.invErf(falseAllarmeProbability);
 	}
 
-	public double compareSignalWithThreshold(Signal signal, int numberOfTest) {
-		int numberOfTotalSamples = signal.getSamples().length;
-		int numberOfSamples = numberOfTotalSamples/numberOfTest;
-		Double[] powers = new Double[numberOfTest]; 
-		for (int i = 0; i < numberOfTest; i++) {
-			Signal sig = new Signal();
-			setSamplesToSignal(sig, signal, numberOfSamples, i);
-			double signalPower = SignalProcessor.power(sig);
-			powers[i] = signalPower;
-		}
+	public double compareSignalWithThreshold(AbstractSignal signal, int numberOfTest) {
+		Double[] powers = calculateSignalsPower(signal, numberOfTest);
 		int count = 0;
 		for(int i = 0; i < numberOfTest; i++) {
 			if(powers[i] >= threshold) {
@@ -43,10 +36,26 @@ public class EnergyDetector {
 		return count;
 	}
 
-	private void setSamplesToSignal(Signal sig, Signal signal2, int numberOfSamples, int test) {
+	private Double[] calculateSignalsPower(AbstractSignal signalRead,
+			int numberOfTest) {
+		int numberOfTotalSamples = signalRead.getSamples().length;
+		int numberOfSamples = numberOfTotalSamples/numberOfTest;
+		Double[] powers = new Double[numberOfTest]; 
+		
+		for (int i = 0; i < numberOfTest; i++) {
+			AbstractSignal signal = new Signal();
+			setSamplesToSignal(signal, signalRead, numberOfSamples, i);
+			double signalPower = SignalProcessor.power(signal);
+			powers[i] = signalPower;
+		}
+		return powers;
+	}
+
+	private void setSamplesToSignal(AbstractSignal sig, AbstractSignal signal, 
+			int numberOfSamples, int test) {
 		sig.setSamples(new Complex[numberOfSamples]);
 		for (int i = 0; i < numberOfSamples; i++) {
-			sig.setSample(i, signal2.getSample(i*test));
+			sig.setSample(i, signal.getSample(i*test));
 		}
 	}
 }

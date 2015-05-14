@@ -5,12 +5,12 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 
+import radio.signal.AbstractSignal;
 import radio.signal.Complex;
-import radio.signal.Signal;
 
 public class DataWriter {
 	
-	public void write(String path, Signal s) {
+	public void write(String path, AbstractSignal s) {
 		try {
 			 
 			File file = new File(path);

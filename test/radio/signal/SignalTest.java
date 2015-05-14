@@ -1,4 +1,4 @@
-package signal;
+package radio.signal;
 
 import static org.junit.Assert.*;
 

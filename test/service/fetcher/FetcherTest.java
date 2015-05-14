@@ -1,5 +1,5 @@
 
-package fetcher;
+package service.fetcher;
 
 import static org.junit.Assert.*;
 

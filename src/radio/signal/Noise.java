@@ -2,7 +2,7 @@ package radio.signal;
 
 import java.util.Random;
 
-public class Noise extends Signal {
+public class Noise extends AbstractSignal {
 
 	private double pot_rumore;
 
