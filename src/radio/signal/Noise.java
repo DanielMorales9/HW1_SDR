@@ -2,10 +2,19 @@ package radio.signal;
 
 import java.util.Random;
 
+/**Classe che permette di modellare segnali di tipo Rumore.
+ * @see AbstractSignal
+ * */
+
 public class Noise extends AbstractSignal {
 
 	private double pot_rumore;
-
+    
+	/**
+	 * Costruttore che permette di creare un rumore gaussiano bianco additivo a partire da
+	 * un dato snr e da un certo numero di campioni. Il segnale sarà descritto da una 
+	 * varianza pari a 1 e una media nulla.
+	 * */
 	public Noise(double snr, int length) {
 		Random campione = null;
 		double snr_linearizzato = Math.pow(10, (snr/10)); 
@@ -30,6 +39,9 @@ public class Noise extends AbstractSignal {
 		
 	}
 
+	
+	/** SETTERS & GETTERS **/
+	
 	public double getPot_rumore() {
 		return pot_rumore;
 	}
