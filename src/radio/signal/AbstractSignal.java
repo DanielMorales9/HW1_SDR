@@ -2,11 +2,17 @@ package radio.signal;
 
 import java.util.List;
 
+/**
+ * Classe che modella un segnale e fornisce alcune operazioni di base dei segnali.
+ * La classe è astratta in quanto possono esserci diversi tipi di segnale.
+ * */
+
 public abstract class AbstractSignal {
 
-	protected Complex[] samples;
-	private int length;
+	protected Complex[] samples; //valori complessi del segnale
+	private int length; //lunghezza del segnale, contestualmente rappresenta anche il numero di campioni!
 
+	/** GETTERS AND SETTERS **/
 	public Complex[] getSamples() {
 		return samples;
 	}
@@ -21,7 +27,21 @@ public abstract class AbstractSignal {
 	public void setSample(int k, Complex sample) {
 		this.samples[k] = sample;
 	}
+	
+	public void setSamples(List<Complex> samples) {
+		this.samples = samples.toArray(new Complex[samples.size()]);
+	}
+	public int getLength() {
+		return this.samples.length;
+	}
 
+	public void setLength(int length) {
+		this.length = length;
+	}	
+	
+    /** 
+     * Metodo che ruota(inverte) il segnale
+     * **/	
 	public void rotate() { 
 		Complex[] c = new Complex[this.samples.length];
 		for(int i = 0; i < this.samples.length; i++) {
@@ -30,24 +50,19 @@ public abstract class AbstractSignal {
 		this.samples = c;
 	}
 
+	/**
+	 * Metodo che permette di ottenere il complesso e coniugato di un segnale.
+	 * **/
 	public void complexCon() {
 		for (Complex sample : samples) {
 			sample.complexCon();
 		}
 	}
 
-	public void setSamples(List<Complex> samples) {
-		this.samples = samples.toArray(new Complex[samples.size()]);
-	}
-
-	public int getLength() {
-		return this.samples.length;
-	}
-
-	public void setLength(int length) {
-		this.length = length;
-	}
-
+	/**
+	 * Metodo che permette di sommare a un certo elemento i un determinato numero complesso sample
+	 * @param int i, Complex sample
+	 * */
 	public void sum(int i, Complex sample) {
 		setSample(i, Complex.sum(this.samples[i], sample));
 	}
