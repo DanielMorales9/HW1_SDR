@@ -6,7 +6,11 @@ import radio.signal.AbstractSignal;
 import radio.signal.Noise;
 import radio.signal.Signal;
 import radio.signalprocessing.SignalProcessor;
-
+/**
+ * Classe simulatore che emula la generazione di un Segnale R(n)
+ * @author Daniel
+ *
+ */
 public class Simulator {
 
 	private final static int CUSTOM_SAMPLES_LENGTH = 1000000;
@@ -21,6 +25,11 @@ public class Simulator {
 		this.detectionPercentage = detectionPercentage;
 	}
 
+	/**
+	 * Semplice metodo che genera un segnale immerso in rumore
+	 * @return segnale
+	 * @throws InvalidSignalsException
+	 */
 	public AbstractSignal generateSignalWithNoise() throws InvalidSignalsException {
 		AbstractSignal output = null;
 		if (detectionPercentage == 1) {
@@ -36,6 +45,12 @@ public class Simulator {
 		return output;
 	}
 	
+	/**
+	 * Somma rumore (con snr specificato) e un segnale a potenza unitaria
+	 * @param snr
+	 * @return
+	 * @throws InvalidSignalsException
+	 */
 	private AbstractSignal generateSignalAndNoise(double snr) 
 			throws InvalidSignalsException {
 		AbstractSignal simpleSignal = new Signal(CUSTOM_SAMPLES_LENGTH);
