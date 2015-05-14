@@ -2,6 +2,11 @@ package radio.signal;
 
 import radio.signalprocessing.SignalProcessor;
 
+/**
+ * Classe che modella un segnale nel discreto.
+ * @extends AbstractSignal
+ * **/
+
 public class Signal extends AbstractSignal {
 
 	public Signal(int length) {
@@ -24,6 +29,13 @@ public class Signal extends AbstractSignal {
 	public Signal() {
 	}
 
+	/** OPERAZIONI **/
+	
+	/**
+	 * Medoto che permette di ottenere l'SNR di un dato segnale
+	 * Nel particolare l'SNR è ottenuto a partire dalla potenza del segnale
+	 * @See SignalProcessor
+	 * @return double SNR**/
 	public double getSNR() {
 		double signalPower = SignalProcessor.power(this);
 		return SignalProcessor.calculateSNRFromPower(signalPower);
