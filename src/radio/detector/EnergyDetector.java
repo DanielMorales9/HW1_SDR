@@ -58,4 +58,8 @@ public class EnergyDetector {
 			sig.setSample(i, signal.getSample(i*test));
 		}
 	}
+
+	public double getThreshold() {
+		return this.threshold;
+	}
 }

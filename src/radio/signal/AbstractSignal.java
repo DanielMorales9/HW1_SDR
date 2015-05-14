@@ -5,6 +5,7 @@ import java.util.List;
 public abstract class AbstractSignal {
 
 	protected Complex[] samples;
+	private int length;
 
 	public Complex[] getSamples() {
 		return samples;
@@ -38,4 +39,18 @@ public abstract class AbstractSignal {
 	public void setSamples(List<Complex> samples) {
 		this.samples = samples.toArray(new Complex[samples.size()]);
 	}
+
+	public int getLength() {
+		return this.samples.length;
+	}
+
+	public void setLength(int length) {
+		this.length = length;
+	}
+
+	public void sum(int i, Complex sample) {
+		setSample(i, Complex.sum(this.samples[i], sample));
+	}
+
+
 }

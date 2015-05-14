@@ -25,4 +25,8 @@ public class Noise extends AbstractSignal {
 					Math.sqrt(pot_rumore/2));
 		}
 	}
+
+	public Noise() {
+		
+	}
 }

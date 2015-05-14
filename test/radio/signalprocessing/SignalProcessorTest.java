@@ -46,7 +46,7 @@ public class SignalProcessorTest {
 		assertArrayEquals(new Complex[] {new Complex(3.0, 3.0), new Complex(3.0, 3.0)}, 
 				sSum.getSamples());
 	}
-	
+
 	@Test
 	public void testCalculateSNRFromPower() throws Exception {
 		double snr = 1.0/10;
@@ -57,6 +57,27 @@ public class SignalProcessorTest {
 		double resultSNR = SignalProcessor.calculateSNRFromPower(power);
 		System.out.println(resultSNR);
 		assertTrue(resultSNR < snr +0.01 && resultSNR > snr -0.01);
-		
+	}
+
+	@Test
+	public void testRepeatSignalOnNoise() throws Exception {
+		AbstractSignal s1 = new Signal();
+		s1.setSamples(new Complex[] {new Complex(1.0, 2.0), new Complex(1.0, 2.0)});
+
+		Complex[] noiseSamples = new Complex[10]; 
+		for (int i = 0; i < 10; i++) {
+			noiseSamples[i] = new Complex(1.0, 1.0);
+		}
+		AbstractSignal noise = new Noise();
+		noise.setSamples(noiseSamples);
+		Complex[] outputSamples = new Complex[] {new Complex(2.0, 3.0),
+				new Complex(2.0, 3.0), new Complex(1.0, 1.0),
+				new Complex(1.0, 1.0), new Complex(1.0, 1.0),
+				new Complex(1.0, 1.0),new Complex(1.0, 1.0),
+				new Complex(1.0, 1.0),new Complex(1.0, 1.0),
+				new Complex(1.0, 1.0)}; 
+
+		SignalProcessor.sendSignalOnNoise(s1, noise);
+		assertArrayEquals(outputSamples, noise.getSamples());
 	}
 }

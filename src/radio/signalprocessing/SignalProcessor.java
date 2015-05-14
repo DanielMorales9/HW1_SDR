@@ -59,6 +59,14 @@ public class SignalProcessor {
 		double snrDB = 10*Math.log10(1/noisePower);
 		return snrDB;
 	}
+
+	public static AbstractSignal sendSignalOnNoise(AbstractSignal simpleSignal,
+			AbstractSignal noise) {
+		for (int i = 0; i < simpleSignal.getSamples().length; i++) {
+			noise.sum(i, simpleSignal.getSample(i));
+		}
+		return noise;
+	}
 	
 
 }
