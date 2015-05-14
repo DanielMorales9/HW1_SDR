@@ -17,7 +17,7 @@ import simulator.Simulator;
 public class Radio {
 	private static final Double CUSTOM_FALSE_ALLARME_PROBABILITY = Math.pow(10, -4);
 
-	private static final String SIMULATION_PATH = "/Users/Daniel/Desktop/workspace_sdr/HW1/test/mio_output.dat";
+	private static final String SIMULATION_PATH = "/Users/Daniel/Desktop/workspace_sdr/HW1/test/mio_output.dat"; //"C:/Users/Antonio/Desktop/mio_output.dat";
 
 	private static final int NOISE_SAMPLES_LENGTH = 10000;
 
@@ -32,7 +32,7 @@ public class Radio {
 	}
 	
 	/**
-	 * Dato un percorso di un file, ne fa il fetche 
+	 * Dato un percorso di un file, ne fa il fetch
 	 * e crea un segnale
 	 * @param path - percorso del file
 	 * @return

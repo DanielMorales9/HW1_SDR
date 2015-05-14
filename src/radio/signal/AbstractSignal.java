@@ -10,6 +10,7 @@ import java.util.List;
 public abstract class AbstractSignal {
 
 	protected Complex[] samples; //valori complessi del segnale
+	@SuppressWarnings("unused")
 	private int length; //lunghezza del segnale, contestualmente rappresenta anche il numero di campioni!
 
 	/** GETTERS AND SETTERS **/
@@ -55,7 +56,7 @@ public abstract class AbstractSignal {
 	 * **/
 	public void complexCon() {
 		for (Complex sample : samples) {
-			sample.complexCon();
+			sample.complexCon(); //faccio il complesso e coniugato di ogni campione
 		}
 	}
 
