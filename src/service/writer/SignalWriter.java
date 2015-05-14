@@ -8,8 +8,18 @@ import java.io.IOException;
 import radio.signal.AbstractSignal;
 import radio.signal.Complex;
 
+/**
+ * Semplice classe che scrive segnali su file
+ * @author Daniel
+ *
+ */
 public class SignalWriter {
 	
+	/**
+	 * Scrive Segnale s su un file di un percorso s
+	 * @param path
+	 * @param s
+	 */
 	public void write(String path, AbstractSignal s) {
 		try {
 			 

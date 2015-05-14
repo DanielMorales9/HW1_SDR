@@ -46,6 +46,9 @@ public class SignalFetcher {
 		}
 	}
 
+	/**
+	 * legge numero complesso dalla riga di un file
+	 */
 	private void fetchLine(String line) {
 
 		Scanner scanner = new Scanner(line);
