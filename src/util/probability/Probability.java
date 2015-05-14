@@ -18,22 +18,14 @@ public class Probability {
 
 	public static double simpleVariance(Double[] realizations) {
 		double average = Probability.simpleAverage(realizations);
-		double average2 = Math.pow(average, 2);
-		double vqm = Probability.vqm(realizations);
-		double variance = vqm - average2;
+		double variance = 0;
+		for (int i = 0; i < realizations.length; i++) {
+			variance += Math.pow(realizations[i]-average, 2);
+		}
+		variance /= realizations.length;
 		return variance;
 	}
 
-	private static double vqm(Double[] realizations) {
-		int length = realizations.length;
-		double probability = 1.0/length;
-		double vqm = 0;
-		for (int i = 0; i < length; i++) {
-			vqm += Math.pow(realizations[i], 2)*probability;
-		}
-		return vqm;
-	}
-	
 	public static double invErf(double d) throws Exception {
 		if (Math.abs(d)>1) {
 			throw new Exception ("Allowed values for argument in [-1,1]");

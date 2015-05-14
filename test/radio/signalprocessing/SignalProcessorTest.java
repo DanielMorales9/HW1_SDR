@@ -14,7 +14,7 @@ public class SignalProcessorTest {
 
 	@Test
 	public void testPower() {
-		AbstractSignal sig = new Signal(4);
+		AbstractSignal sig = new Signal(100000);
 		double signalPower = SignalProcessor.power(sig);
 		assertTrue(1.0 >= signalPower && signalPower > 0.9 );
 	}

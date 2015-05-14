@@ -13,7 +13,7 @@ public class Radio {
 
 	private static final String SIMULATION_PATH = "/Users/Daniel/Desktop/workspace_sdr/HW1/test/mio_output.dat";
 
-	private static final int NOISE_SAMPLE_LENGTH = 10000;
+	private static final int NOISE_SAMPLES_LENGTH = 10000;
 
 	private Signal signalRead;
 	private EnergyDetector detector;
@@ -44,7 +44,7 @@ public class Radio {
 
 	public double chooseNumberOfTest(int numberOfTest) throws Exception {
 		double SNR = signalRead.getSNR();
-		this.detector.createNoiseEnergies(numberOfTest, NOISE_SAMPLE_LENGTH, SNR);
+		this.detector.createNoiseEnergies(numberOfTest, NOISE_SAMPLES_LENGTH, SNR);
 		this.detector.determineThereshold(falseAllarm);
 		return SNR;
 	}

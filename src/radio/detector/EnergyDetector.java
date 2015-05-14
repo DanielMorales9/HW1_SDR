@@ -16,13 +16,12 @@ public class EnergyDetector {
 		for (int i = 0; i < noiseEnergies.length; i++) {			
 			noiseEnergies[i] = SignalProcessor.power(new Noise(snr, noiseSamplesLength));
 		}
-
 	}
 
 	public void determineThereshold(Double falseAllarmeProbability) throws Exception {
 		this.threshold = Probability.simpleAverage(noiseEnergies);
 		double variance = Probability.simpleVariance(noiseEnergies);
-		threshold += Math.sqrt(2*variance) * Probability.invErf(falseAllarmeProbability);
+		threshold += Math.sqrt(2*variance) * Probability.invErf(1-2*falseAllarmeProbability);
 	}
 
 	public double compareSignalWithThreshold(AbstractSignal signal, int numberOfTest) {
@@ -55,7 +54,8 @@ public class EnergyDetector {
 			int numberOfSamples, int test) {
 		sig.setSamples(new Complex[numberOfSamples]);
 		for (int i = 0; i < numberOfSamples; i++) {
-			sig.setSample(i, signal.getSample(i*test));
+			int signalIndex= i+numberOfSamples*test;
+			sig.setSample(i, signal.getSample(signalIndex));
 		}
 	}
 
