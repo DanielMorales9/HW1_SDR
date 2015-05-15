@@ -4,6 +4,7 @@ import exception.InvalidSignalsException;
 import radio.signal.AbstractSignal;
 import radio.signal.Complex;
 import radio.signal.Signal;
+
 /**
  * Classe che permette di modellare oggetti di tipo SingalProcessor.
  * Nel particolare questo tipo di oggetti, come suggerisce il nome, permettono di processare il segnale
@@ -39,7 +40,7 @@ public class SignalProcessor {
 		if (s1.getSamples().length != s2.getSamples().length) { //i due segnali devono avere la stessa lunghezza!
 			throw new InvalidSignalsException();
 		}
-		
+
 		Complex[] samples = new Complex[s1.getSamples().length];
 		for (int i = 0; i < s1.getSamples().length; i++) {
 			samples[i] = Complex.sum(s1.getSample(i), s2.getSample(i)); //Sommo campione per campione
@@ -48,7 +49,7 @@ public class SignalProcessor {
 		summedSignal.setSamples(samples);
 		return summedSignal;
 	}
-	
+
 	/**
 	 * Metodo che restituisce la convoluzione tra due segnali s1 e s2.
 	 * @param AbstractSignal s1, AbstractSignal s2
@@ -78,7 +79,7 @@ public class SignalProcessor {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Metodo che permette di calcolare l'SNR a partire dalla potenza di un segnale.
 	 * TODO: DESCRIZIONE DETTAGLIATA.
@@ -108,6 +109,6 @@ public class SignalProcessor {
 		}
 		return noise;
 	}
-	
+
 
 }
