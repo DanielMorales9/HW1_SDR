@@ -5,8 +5,19 @@ import radio.signal.AbstractSignal;
 import radio.signal.Complex;
 import radio.signal.Signal;
 
+/**
+ * Semplice classe che astrae la componente hardware di una radio.
+ * @author Daniel
+ *
+ */
 public class SignalProcessor {
 
+	/**
+	 * Metodo che calcola la potenza di un segnale come la sommatoria di 
+	 * moduli quadri dei campioni fratto il numero di campioni
+	 * @param signal
+	 * @return
+	 */
 	public static double power(AbstractSignal signal) {
 		double result = 0;
 		for (Complex sample : signal.getSamples()) {
@@ -16,6 +27,13 @@ public class SignalProcessor {
 		return result/signal.getSamples().length;
 	}
 
+	/**
+	 * Metodo che sovrappone i campioni di due segnali
+	 * @param s1
+	 * @param s2
+	 * @return
+	 * @throws InvalidSignalsException
+	 */
 	public static AbstractSignal sum(AbstractSignal s1, AbstractSignal s2) throws InvalidSignalsException {
 		if (s1.getSamples().length != s2.getSamples().length) {
 			throw new InvalidSignalsException();
@@ -30,6 +48,12 @@ public class SignalProcessor {
 		return summedSignal;
 	}
 	
+	/** 
+	 * Semplice metodo che fa la convoluzione di due segnali
+	 * @param s1
+	 * @param s2
+	 * @return
+	 */
 	public static AbstractSignal convolution(AbstractSignal s1, AbstractSignal s2) {
 
 		int finalLength = s1.getSamples().length + s2.getSamples().length-1;
@@ -54,6 +78,11 @@ public class SignalProcessor {
 		return result;
 	}
 	
+	/**
+	 * Semplice metodo che data la potenza del segnale calcola l'snr
+	 * @param signalPower
+	 * @return snr in decibel
+	 */
 	public static double calculateSNRFromPower(double signalPower) {
 		double noisePower = signalPower -1;
 		double snrDB;
@@ -65,7 +94,13 @@ public class SignalProcessor {
 		}
 		return snrDB;
 	}
-
+	
+	/**
+	 * Semplice metodo che dati due segnali li sovrappone
+	 * @param simpleSignal
+	 * @param noise
+	 * @return
+	 */
 	public static AbstractSignal sendSignalOnNoise(AbstractSignal simpleSignal,
 			AbstractSignal noise) {
 		for (int i = 0; i < simpleSignal.getSamples().length; i++) {

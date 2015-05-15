@@ -15,7 +15,7 @@ import simulator.Simulator;
  *
  */
 public class Radio {
-	private static final Double CUSTOM_FALSE_ALLARME_PROBABILITY = Math.pow(10, -4);
+	private static final Double CUSTOM_FALSE_ALLARME_PROBABILITY = Math.pow(10, -3);
 
 	private static final String SIMULATION_PATH = "/Users/Daniel/Desktop/workspace_sdr/HW1/test/mio_output.dat";
 
