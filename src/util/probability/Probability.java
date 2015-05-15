@@ -5,27 +5,49 @@ import java.math.BigInteger;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
+/**
+ * Classe utile a modellare le operazioni statistiche di interesse
+ * per le elaborazioni numeriche dei segnali.
+ * */
 public class Probability {
 
+	/**
+	 * Metodo che permette di calcolare la media statistica di un insieme di elementi
+	 * Nel particolare la media è pari alla somma di tutti gli elementi diviso il numero totali di elementi.
+	 * @param double[] vettore
+	 * @return double media statistica
+	 * */
 	public static double simpleAverage(Double[] realizations) {
 		double realizationsSum = 0.0;
-		for (int i = 0; i < realizations.length; i++) {
+		for (int i = 0; i < realizations.length; i++) { //sommo tutti gli elementi
 			realizationsSum += realizations[i];
 		}
-		double average = realizationsSum/realizations.length;
+		double average = realizationsSum/realizations.length; //divido per il numero totale degli elementi
 		return  average;
 	}
 
+	/**
+	 * Metodo che permette di calcolare la varianza di un insieme di elementi.
+	 * Nel particolare la varianza è calcolata sommando il contributo di ogni elemento meno la media statistica
+	 * del vettore al quadrato. Il risultato sarà poi diviso per il numero totale degli elementi.
+	 * @param double[] vettore
+	 * @return double varianza dei campioni
+	 * */
 	public static double simpleVariance(Double[] realizations) {
-		double average = Probability.simpleAverage(realizations);
+		double average = Probability.simpleAverage(realizations); //media del vettore
 		double variance = 0;
-		for (int i = 0; i < realizations.length; i++) {
-			variance += Math.pow(realizations[i]-average, 2);
+		for (int i = 0; i < realizations.length; i++) { 
+			variance += Math.pow(realizations[i]-average, 2); //sommo il quadrato dell'elemento i-esimo sottratto alla media
 		}
-		variance /= realizations.length;
+		variance /= realizations.length; //divido per il numero totale di elementi
 		return variance;
 	}
 
+	/**
+	 * Funzione inversa dell'errore che permette di calcolare il valore della soglia
+	 * L'argomento passato come parametro deve variare tra -1 e 1.
+	 * @param double argument
+	 * @return double risultato della funzione inversa dell'errore**/
 	public static double invErf(double d) throws Exception {
 		if (Math.abs(d)>1) {
 			throw new Exception ("Allowed values for argument in [-1,1]");

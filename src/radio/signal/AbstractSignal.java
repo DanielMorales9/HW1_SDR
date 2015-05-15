@@ -4,7 +4,7 @@ import java.util.List;
 
 /**
  * Classe che modella un segnale e fornisce alcune operazioni di base dei segnali.
- * La classe è astratta in quanto possono esserci diversi tipi di segnale.
+ * La classe ï¿½ astratta in quanto possono esserci diversi tipi di segnale.
  * */
 
 public abstract class AbstractSignal {

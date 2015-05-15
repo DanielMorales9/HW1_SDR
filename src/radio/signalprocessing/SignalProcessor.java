@@ -4,64 +4,65 @@ import exception.InvalidSignalsException;
 import radio.signal.AbstractSignal;
 import radio.signal.Complex;
 import radio.signal.Signal;
-
 /**
- * Semplice classe che astrae la componente hardware di una radio.
- * @author Daniel
- *
- */
+ * Classe che permette di modellare oggetti di tipo SingalProcessor.
+ * Nel particolare questo tipo di oggetti, come suggerisce il nome, permettono di processare il segnale
+ * svolgendo alcune funzioni di interesse (calcolo potenza, somma, convoluzione, calcolo snr etc.)
+ * **/
+
 public class SignalProcessor {
 
 	/**
-	 * Metodo che calcola la potenza di un segnale come la sommatoria di 
-	 * moduli quadri dei campioni fratto il numero di campioni
-	 * @param signal
-	 * @return
-	 */
+	 * Metodo che permette di ottenere la potenza di un certo segnale.
+	 * Nel particolare la potenza di un segnale discreto � pari alla somma del modulo quadro di ogni campione
+	 * tutto fratto il numero di campioni.
+	 * @param AbstractSignal signal
+	 * @return double potenza del Segnale
+	 **/
 	public static double power(AbstractSignal signal) {
 		double result = 0;
 		for (Complex sample : signal.getSamples()) {
 			double moduloQuadro = Math.pow(sample.module(), 2);
 			result += moduloQuadro;
 		}
-		return result/signal.getSamples().length;
+		return result/signal.getSamples().length; 
 	}
 
 	/**
-	 * Metodo che sovrappone i campioni di due segnali
-	 * @param s1
-	 * @param s2
-	 * @return
+	 * Metodo che permette di calcolare la somma di due Segnali aventi la stessa lunghezza,
+	 * (stesso numero di campioni). 
+	 * @param AbstractSignal signal1, AbstractSignal signal2
 	 * @throws InvalidSignalsException
-	 */
+	 * @return AbstractSignal signal1 + signal2 
+	 **/
 	public static AbstractSignal sum(AbstractSignal s1, AbstractSignal s2) throws InvalidSignalsException {
-		if (s1.getSamples().length != s2.getSamples().length) {
+		if (s1.getSamples().length != s2.getSamples().length) { //i due segnali devono avere la stessa lunghezza!
 			throw new InvalidSignalsException();
 		}
 		
 		Complex[] samples = new Complex[s1.getSamples().length];
 		for (int i = 0; i < s1.getSamples().length; i++) {
-			samples[i] = Complex.sum(s1.getSample(i), s2.getSample(i));
+			samples[i] = Complex.sum(s1.getSample(i), s2.getSample(i)); //Sommo campione per campione
 		}
 		AbstractSignal summedSignal = new Signal();
 		summedSignal.setSamples(samples);
 		return summedSignal;
 	}
 	
-	/** 
-	 * Semplice metodo che fa la convoluzione di due segnali
-	 * @param s1
-	 * @param s2
-	 * @return
-	 */
+	/**
+	 * Metodo che restituisce la convoluzione tra due segnali s1 e s2.
+	 * @param AbstractSignal s1, AbstractSignal s2
+	 * @return AbstractSignal s1 convoluto s2 
+	 * **/
 	public static AbstractSignal convolution(AbstractSignal s1, AbstractSignal s2) {
 
-		int finalLength = s1.getSamples().length + s2.getSamples().length-1;
+		//la convoluzione avr� lunghezza pari alla somma del numero dei campioni dei segnali
+		int finalLength = s1.getSamples().length + s2.getSamples().length-1; 
 		AbstractSignal result = new Signal();
 		result.setSamples(new Complex[finalLength]);
 
 		for(int k=0; k<finalLength; k++) {
-			int upperBound = Math.min(k, s2.getSamples().length -1);
+			int upperBound = Math.min(k, s2.getSamples().length -1); 
 			int lowerBound = Math.max(0, k - s1.getSamples().length +1);
 
 			for(int j=lowerBound; j<=upperBound; j++) {
@@ -79,10 +80,11 @@ public class SignalProcessor {
 	}
 	
 	/**
-	 * Semplice metodo che data la potenza del segnale calcola l'snr
-	 * @param signalPower
-	 * @return snr in decibel
-	 */
+	 * Metodo che permette di calcolare l'SNR a partire dalla potenza di un segnale.
+	 * TODO: DESCRIZIONE DETTAGLIATA.
+	 * @param double signalPower
+	 * @return double snr
+	 **/
 	public static double calculateSNRFromPower(double signalPower) {
 		double noisePower = signalPower -1;
 		double snrDB;
@@ -94,13 +96,11 @@ public class SignalProcessor {
 		}
 		return snrDB;
 	}
-	
 	/**
-	 * Semplice metodo che dati due segnali li sovrappone
-	 * @param simpleSignal
-	 * @param noise
-	 * @return
-	 */
+	 * Metodo che somma il rumore a un segnale 
+	 * @param AbstractSignal simpleSignal, AbstractSignal noise
+	 * @return AbstractSignal noise
+	 * **/
 	public static AbstractSignal sendSignalOnNoise(AbstractSignal simpleSignal,
 			AbstractSignal noise) {
 		for (int i = 0; i < simpleSignal.getSamples().length; i++) {
