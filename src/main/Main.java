@@ -1,67 +1,39 @@
 package main;
 
-import java.util.Scanner;
-
 import radio.Radio;
 
 public class Main {
 
+	
 	public static void main(String[] args) throws Exception {
+		String[] paths = new String[] { 
+				"/Users/Daniel/Desktop/workspace_sdr/HW1/Sequenza_1/output_1.dat", 
+				"/Users/Daniel/Desktop/workspace_sdr/HW1/Sequenza_1/output_3.dat", 
+				"/Users/Daniel/Desktop/workspace_sdr/HW1/Sequenza_1/output_4.dat",
+				"/Users/Daniel/Desktop/workspace_sdr/HW1/Sequenza_2/output_1.dat", 
+				"/Users/Daniel/Desktop/workspace_sdr/HW1/Sequenza_2/output_3.dat", 
+				"/Users/Daniel/Desktop/workspace_sdr/HW1/Sequenza_2/output_4.dat",
+				"/Users/Daniel/Desktop/workspace_sdr/HW1/Sequenza_3/output_1.dat", 
+				"/Users/Daniel/Desktop/workspace_sdr/HW1/Sequenza_3/output_3.dat", 
+				"/Users/Daniel/Desktop/workspace_sdr/HW1/Sequenza_3/output_4.dat",
+		};
 		Radio radio = new Radio();
-		Scanner scanner = new Scanner(System.in);
-		double snr, detectionPercentage;
-		String choose;
-
-		do {
-			System.out.println("Vuoi fare una simulazione? (y/n)");
-			choose = scanner.nextLine();
-			choose.toLowerCase();
-
-			if (choose.equals("y")) {
-				System.out.println("Facciamo una simulazione...");
-				System.out.println("Scegli un valore di detection:");
-				detectionPercentage = scanner.nextDouble();
-				System.out.println("Scegli un valore di SNR:");
-				snr = scanner.nextDouble();
-				radio.createNewSimulation(detectionPercentage, snr);
-
-			}
-			else {
-				System.out.println("Ipotesi H0: Ascolto il segnale.");
-				System.out.println("Inserisci il path del segnale.");
-				String path = scanner.nextLine();
-				String validationPathMessage = radio.insertPathOfSignalFile(path);
-				if (validationPathMessage != null) {
-					System.out.println(validationPathMessage);
-					return;
-				}
-			}
-
-			System.out.println("Stabilisci numero di prove per le quali viene "
-					+ "generato di volta in volta un nuovo rumore avente le "
-					+ "stesse caratteristiche di valor atteso e varianza");
-			int numberOfTest = scanner.nextInt();
-			snr = radio.chooseNumberOfTest(numberOfTest);
-			System.out.println("L'SNR calcolato è: "+snr);
-			System.out.println("Sto calcolando per ogni prova l'energia "
-					+ "del rumore generato e lo sto memorizzando in un vettore."
-					+ "\nSto calcolando la soglia...");
-			double threshold = radio.getThreshold();
-			System.out.println("La soglia è: "+threshold + "\n");
-			System.out.println("Ascolto il segnale ricevuto...");
-			System.out.println("Stabilisci il numero di prove da compiere online.");
-			int tests = scanner.nextInt();
-			detectionPercentage = radio.compareWithThreshold(tests);
-			System.out.println("\nSto calcolando le energie di ciascuna prova...");
-			System.out.println("\nSto confrontando ciascuna energia con la soglia...");
-			System.out.println("\nLa percentuale di detection è pari al: " + detectionPercentage+"%");
+		int numberOfTest = 10000, tests=100;
+		double[] snr = new double[paths.length]; 
+		double[] thresholds = new double[paths.length];
+		double[] detectionPercentages = new double[paths.length];
+		
+ 
+		for (int i = 0; i< paths.length; i++) {
+			radio.insertPathOfSignalFile(paths[i]);
+			snr[i] = radio.chooseNumberOfTest(numberOfTest);
+			thresholds[i] = radio.getThreshold();
+			detectionPercentages[i] = radio.compareWithThreshold(tests);
 			
-			System.out.println("Vuoi riprovare? (y/n)");
-			scanner.nextLine();
-			choose = scanner.nextLine();
-			choose.toLowerCase();
-			
-		} while (choose.equals("y")); 
-		scanner.close();
+		}
+		System.out.println("SNR\tSoglia\tDETECTION");
+		for (int i = 0; i <paths.length; i++) {
+			System.out.println(snr[i]+"\t"+thresholds[i]+"\t"+detectionPercentages[i]);
+		}
 	}
 }

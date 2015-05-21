@@ -59,7 +59,7 @@ public class EnergyDetector {
 				count++;
 			}
 		}
-		return count;
+		return (double) count;
 	}
 
 	/**

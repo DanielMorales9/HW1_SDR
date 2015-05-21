@@ -1,12 +1,7 @@
 package radio;
-import exception.InvalidDetectionPercentageException;
-import exception.InvalidSignalsException;
 import radio.detector.EnergyDetector;
-import radio.signal.AbstractSignal;
 import radio.signal.Signal;
 import service.fetcher.SignalFetcher;
-import service.writer.SignalWriter;
-import simulator.Simulator;
 
 /**
  * Radio è una classe che rappresenta l'intero sistema in questione.
@@ -17,9 +12,7 @@ import simulator.Simulator;
 public class Radio {
 	private static final Double CUSTOM_FALSE_ALLARME_PROBABILITY = Math.pow(10, -3);
 
-	private static final String SIMULATION_PATH = "/Users/Daniel/Desktop/workspace_sdr/HW1/test/mio_output.dat";
-
-	private static final int NOISE_SAMPLES_LENGTH = 10000;
+	private static final int NOISE_SAMPLES_LENGTH = 1000;
 
 	private Signal signalRead;
 	private EnergyDetector detector;
@@ -77,6 +70,7 @@ public class Radio {
 		this.detector.createNoiseEnergies(numberOfTest, NOISE_SAMPLES_LENGTH, SNR);
 		this.detector.determineThereshold(falseAllarm);
 		return SNR;
+		
 	}
 
 	/**
@@ -87,37 +81,8 @@ public class Radio {
 	public double compareWithThreshold(int numberOfTest) {
 		double numberOfDetections = 
 				this.detector.compareSignalWithThreshold(signalRead, numberOfTest);
-		double detectionPercent = numberOfDetections/numberOfTest*100;
+		double detectionPercent = numberOfDetections/ (double) (numberOfTest)*100;
 		return detectionPercent;
-	}	
-
-	/**
-	 * Data una percentuale di detection e un snr genera una simulazione
-	 * in cui su una trasmissione di un milione di campioni di rumore (a snr dato)
-	 * va a sommare un numero di campioni di segnali a potenza unitaria pari alla 
-	 * percentuale di detection per il numero di campioni
-	 * @param detectionPercentage - percentuale di detection
-	 * @param snr
-	 * @throws InvalidDetectionPercentageException
-	 * @throws InvalidSignalsException
-	 */
-	public void createNewSimulation(double detectionPercentage, double snr) 
-			throws InvalidDetectionPercentageException, InvalidSignalsException {
-		double detection = detectionPercentage/100;
-		Simulator simulator = new Simulator(detection, snr);
-		AbstractSignal signal = simulator.generateSignalWithNoise();
-
-		writeSimulation(signal);
-		insertPathOfSignalFile(SIMULATION_PATH);
-	}
-
-	/**
-	 * Dato un segnale lo scrive su un file
-	 * @param signal
-	 */
-	private void writeSimulation(AbstractSignal signal) {
-		SignalWriter writer = new SignalWriter();
-		writer.write(SIMULATION_PATH, signal);
 	}
 	
 	
