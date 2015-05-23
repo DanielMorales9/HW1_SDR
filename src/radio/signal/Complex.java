@@ -2,7 +2,7 @@ package radio.signal;
 
 /**
  * Classe che modella i numeri Complessi e le operazioni fondamentali
- * @author Antonio Matinata
+ * 
  */
 
 public class Complex {
