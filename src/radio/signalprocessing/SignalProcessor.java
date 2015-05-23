@@ -6,16 +6,15 @@ import radio.signal.Complex;
 import radio.signal.Signal;
 
 /**
- * Classe che permette di modellare oggetti di tipo SingalProcessor.
- * Nel particolare questo tipo di oggetti, come suggerisce il nome, permettono di processare il segnale
- * svolgendo alcune funzioni di interesse (calcolo potenza, somma, convoluzione, calcolo snr etc.)
- * **/
+ * Classe che astrae una componente hardware di una Radio SDR
+ * @author Daniel, Antonio
+ **/
 
 public class SignalProcessor {
 
 	/**
 	 * Metodo che permette di ottenere la potenza di un certo segnale.
-	 * Nel particolare la potenza di un segnale discreto � pari alla somma del modulo quadro di ogni campione
+	 * In particolare la potenza di un segnale discreto � pari alla somma del modulo quadro di ogni campione
 	 * tutto fratto il numero di campioni.
 	 * @param AbstractSignal signal
 	 * @return double potenza del Segnale
@@ -82,19 +81,14 @@ public class SignalProcessor {
 
 	/**
 	 * Metodo che permette di calcolare l'SNR a partire dalla potenza di un segnale.
-	 * TODO: DESCRIZIONE DETTAGLIATA.
 	 * @param double signalPower
 	 * @return double snr
 	 **/
 	public static double calculateSNRFromPower(double signalPower) {
 		double noisePower = signalPower -1;
 		double snrDB;
-		if (noisePower <0) {
-			snrDB = 10*Math.log10(1/signalPower);
-		}
-		else {
-			snrDB = 10*Math.log10(1/noisePower);
-		}
+
+		snrDB = 10*Math.log10(1/noisePower);
 		return snrDB;
 	}
 	/**

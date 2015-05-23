@@ -2,7 +2,7 @@ package radio.signal;
 
 /**
  * Classe che modella i numeri Complessi e le operazioni fondamentali
- * 
+ * @author Daniel, Antonio
  */
 
 public class Complex {
@@ -37,23 +37,7 @@ public class Complex {
 	}
 
 	/** OPERAZIONI **/
-	
-	/**
-	 * Controlla se il numero complesso � costituito da sola parte reale
-	 * @return true se la parte immaginaria � nulla
-	 *  */
-	public boolean isReale(){
-		return this.pReal==0.0;
-	}
-	
-	/**
-	 * Controlla se il numero complesso � costituito da sola parte immaginaria
-	 * @return true se la parte reale � nulla
-	 */
-	public boolean isImmaginario(){
-		return this.pImg==0.0;
-	}
-	
+
 	/** 
 	 * Metodo che permette di ottenere il complesso e coniugato di un numero complesso z;
 	 * Il complesso e coniugato di un numero complesso z ha la stessa parte reale e la parte immaginaria

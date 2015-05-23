@@ -1,4 +1,8 @@
 package radio;
+
+
+import java.io.FileNotFoundException;
+
 import radio.detector.EnergyDetector;
 import radio.signal.Signal;
 import service.fetcher.SignalFetcher;
@@ -6,7 +10,7 @@ import service.fetcher.SignalFetcher;
 /**
  * Radio è una classe che rappresenta l'intero sistema in questione.
  * Si occupa di offrire tramite la sua interfaccia tutte le operazioni di energy detection
- * 
+ * @author Daniel, Antonio
  */
 public class Radio {
 	//Variabili di test
@@ -15,7 +19,7 @@ public class Radio {
 
 	private Signal signalRead;
 	private EnergyDetector detector;
-	private double falseAllarm; //probabilit� di falso allarme cercata
+	private double falseAllarm; //probabilita' di falso allarme desiderata
     private int noiseSamplesLength;//lunghezza dei campioni del segnale di rumore
 	
 	public Radio() {
@@ -33,12 +37,17 @@ public class Radio {
 		this.noiseSamplesLength=noiseSamplesLength;
 	}
 	
-	/** SETTERS AND GETTERS **/
+	/** 
+	 * -------------------
+	 * SETTERS AND GETTERS 
+	 * -------------------
+	 **/
+	
 	public double getFalseAllarm(){
 		return this.falseAllarm;
 	}
 	
-	public int getLunghezzaRumore(){
+	public int getNoiseLength(){
 		return this.noiseSamplesLength;
 	}
 
@@ -53,33 +62,29 @@ public class Radio {
 	 * e crea un segnale
 	 * @param String path - percorso del file
 	 * @return
+	 * @throws Exception 
 	 */
-	public String insertPathOfSignalFile(String path) {
-		try {
-			SignalFetcher fetcher = new SignalFetcher(path);
-			fetcher.fetch();
-			signalRead.setSamples(fetcher.getSamples());
-		} catch (Exception e) {
-			return "Il path inserito non è valido";
-		}
-		return null;
+	public void insertPathOfSignalFile(String path) throws FileNotFoundException {
+		SignalFetcher fetcher = new SignalFetcher(path);
+		fetcher.fetch();
+		signalRead.setSamples(fetcher.getSamples());
 	}
 
-//	/**
-//	 * Semplice metodo che dato un numero di prove e la lunghezza dei campioni del 
-//	 * rumore, crea un vettore di energie calcolate su 
-//	 * un rumore Gaussiano e ne determina una soglia.
-//	 * @param numberOfTest - numero di prove
-//	 * @param noiseSamplesLength - numero di campioni del rumore
-//	 * @return il valore in decibel dell'SNR del segnale letto.
-//	 * @throws Exception
-//	 */
-//	public double chooseNumberOfTest(int numberOfTest, int noiseSamplesLength) throws Exception {
-//		double SNR = signalRead.getSNR();
-//		this.detector.createNoiseEnergies(numberOfTest, noiseSamplesLength, SNR);
-//		this.detector.determineThereshold(falseAllarm);
-//		return SNR;
-//	}
+	/**
+	 * Semplice metodo che dato un numero di prove e la lunghezza dei campioni del 
+	 * rumore, crea un vettore di energie calcolate su 
+	 * un rumore Gaussiano e ne determina una soglia.
+	 * @param numberOfTest - numero di prove
+	 * @param noiseSamplesLength - numero di campioni del rumore
+	 * @return il valore in decibel dell'SNR del segnale letto.
+	 * @throws Exception
+	 */
+	public double chooseNumberOfTest(int numberOfTest, int noiseSamplesLength) throws Exception {
+		double SNR = signalRead.getSNR();
+		this.detector.createNoiseEnergies(numberOfTest, noiseSamplesLength, SNR);
+		this.detector.determineThereshold(falseAllarm);
+		return SNR;
+	}
 
 	/**
 	 * Dato un numero di prove,

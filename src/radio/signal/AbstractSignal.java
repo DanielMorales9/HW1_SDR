@@ -3,8 +3,8 @@ package radio.signal;
 import java.util.List;
 
 /**
- * Classe che modella un segnale e fornisce alcune operazioni di base dei segnali.
- * La classe � astratta in quanto possono esserci diversi tipi di segnale.
+ * Classe che modella un segnale.
+ * @author Daniel, Antonio
  * */
 
 public abstract class AbstractSignal {

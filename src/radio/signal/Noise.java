@@ -12,7 +12,7 @@ public class Noise extends AbstractSignal {
     
 	/**
 	 * Costruttore che permette di creare un rumore gaussiano bianco additivo a partire da
-	 * un dato snr e da un certo numero di campioni. Il segnale sarà descritto da una 
+	 * un dato snr e da un certo numero di campioni. Il segnale sara' descritto da una 
 	 * varianza pari a 1 e una media nulla.
 	 * */
 	public Noise(double snr, int length) {

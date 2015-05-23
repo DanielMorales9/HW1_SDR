@@ -3,6 +3,8 @@ package service.fetcher;
 
 import static org.junit.Assert.*;
 
+import java.io.FileNotFoundException;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,11 +17,11 @@ public class SignalFetcherTest {
 	
 	@Before
 	public void startUp() {
-		fetcher = new SignalFetcher("/Users/Daniel/Desktop/workspace_sdr/HW1/Sequenza_1/output_1.dat");
+		fetcher = new SignalFetcher("Sequenza_1/output_1.dat");
 	}
 	
 	@Test
-	public void testFetch() {
+	public void testFetch() throws FileNotFoundException {
 		fetcher.fetch();
 		assertEquals(1000000, fetcher.getCountReal());
 		assertEquals(1000000, fetcher.getCountImg());

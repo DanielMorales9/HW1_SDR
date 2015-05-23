@@ -9,7 +9,7 @@ import util.probability.Probability;
 
 /**
  * Classe che modella la componente di Energy Detector di una Radio SCR.
- * @author Daniel
+ * @author Daniel, Antonio
  *
  */
 public class EnergyDetector {

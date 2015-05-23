@@ -13,7 +13,7 @@ public class Probability {
 
 	/**
 	 * Metodo che permette di calcolare la media statistica di un insieme di elementi
-	 * Nel particolare la media è pari alla somma di tutti gli elementi diviso il numero totali di elementi.
+	 * Nel particolare la media ï¿½ pari alla somma di tutti gli elementi diviso il numero totali di elementi.
 	 * @param double[] vettore
 	 * @return double media statistica
 	 * */
@@ -28,8 +28,8 @@ public class Probability {
 
 	/**
 	 * Metodo che permette di calcolare la varianza di un insieme di elementi.
-	 * Nel particolare la varianza è calcolata sommando il contributo di ogni elemento meno la media statistica
-	 * del vettore al quadrato. Il risultato sarà poi diviso per il numero totale degli elementi.
+	 * Nel particolare la varianza ï¿½ calcolata sommando il contributo di ogni elemento meno la media statistica
+	 * del vettore al quadrato. Il risultato sarï¿½ poi diviso per il numero totale degli elementi.
 	 * @param double[] vettore
 	 * @return double varianza dei campioni
 	 * */
